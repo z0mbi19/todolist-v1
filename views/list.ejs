@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <title>Lista de tarefas</title>
 </head>
-    <h1>Hoje é <%= algumDia %>  !!!</h1>
+    <% if(algumDia === "Sábado" || algumDia === "Domingo"){ %> 
+        <h1 style="color:blueviolet">A lista de <%= algumDia %>  !!!</h1>
+    <% }else{ %> 
+        <h1 style="color:red">A lista de <%= algumDia %>  !!!</h1>
+    <% } %> 
 <body>
     
 </body>

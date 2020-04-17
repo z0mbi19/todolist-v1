@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.get("/", function(req, res){
     const data = new Date();
     const hoje = data.getDay()
-    let dia = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"]
+    let dia = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"] 
     
     res.render("list", {algumDia: dia[hoje]})
 })
