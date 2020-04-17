@@ -3,19 +3,16 @@ const bodyParser = require("body-parser")
 
 const app = express()
 
+app.set("view engine", "ejs")
+
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.get("/", function(req, res){
     const data = new Date();
     const hoje = data.getDay()
-
-    if (hoje === 6 ||hoje === 0){
-        res.write("<h1>Finalmente feriado krl!!!</h1>")
-        res.write("<h2>Vou virar a noite jogando <3</h2>")
-        res.send()
-    } else {
-        res.sendFile(__dirname + "/index.html")
-    }
+    let dia = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"]
+    
+    res.render("list", {algumDia: dia[hoje]})
 })
 
 
