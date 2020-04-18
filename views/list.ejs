@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <title>Lista de tarefas</title>
 </head>
-    <% if(algumDia === "Sábado" || algumDia === "Domingo"){ %> 
-        <h1 style="color:blueviolet">A lista de <%= algumDia %>  !!!</h1>
-    <% }else{ %> 
-        <h1 style="color:red">A lista de <%= algumDia %>  !!!</h1>
-    <% } %> 
+    <h1> <%= algumDia %></h1>
+    <ul>
+        <% for (var i = 0; i < novoItem.length; i++){ %>  
+            <li> <%= novoItem[i] %> </li>
+        <% } %> 
+    </ul>
+    <form action="/" method="post">
+        <input type="text" name="coisas" placeholder="Estou aqui para te lembra">
+        <button type="submit" name="button">add</button>
+    </form>
 <body>
     
 </body>

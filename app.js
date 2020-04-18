@@ -3,19 +3,40 @@ const bodyParser = require("body-parser")
 
 const app = express()
 
+let items = ["Exercitar", "Estudar"]
+
 app.set("view engine", "ejs")
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
     const data = new Date();
-    const hoje = data.getDay()
-    let dia = ["Domingo", "Segunda-Feira", "Terça-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "Sábado"] 
-    
-    res.render("list", {algumDia: dia[hoje]})
+
+    let options = {
+        weekday: "long",
+        day: "2-digit",
+        month: "long"
+    }
+
+    let dia = data.toLocaleDateString("pt-BR", options);
+
+    res.render("list", {
+        algumDia: dia,
+        novoItem: items
+    })
 })
 
+app.post("/", function (req, res) {
+    let item = req.body.coisas
 
-app.listen(3000, function(){
-    console.log("Server ativo porta 3000...");    
+    items.push(item)
+
+    console.log(items);
+    
+
+    res.redirect("/")
+})
+
+app.listen(3000, function () {
+    console.log("Server ativo porta 3000...");
 })
