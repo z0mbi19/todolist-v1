@@ -4,10 +4,13 @@ const bodyParser = require("body-parser")
 const app = express()
 
 let items = ["Exercitar", "Estudar"]
+let workItem = []
 
 app.set("view engine", "ejs")
 
 app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(express.static("public"))
 
 app.get("/", function (req, res) {
     const data = new Date();
@@ -21,20 +24,36 @@ app.get("/", function (req, res) {
     let dia = data.toLocaleDateString("pt-BR", options);
 
     res.render("list", {
-        algumDia: dia,
+        algumCoisa: dia,
         novoItem: items
     })
 })
 
 app.post("/", function (req, res) {
-    let item = req.body.coisas
 
-    items.push(item)
+    let item = req.body.novaTarefa    
 
-    console.log(items);
-    
+    if(req.body.list === "Trabalhos"){
+        workItem.push(item)
+        res.redirect("/work")
+    }else{
+        items.push(item)
+        res.redirect("/")
+    }
 
-    res.redirect("/")
+})
+
+app.get("/work", function(req, res){
+    res.render("list", {
+        algumCoisa: "Trabalhos",
+        novoItem: workItem
+    })
+})
+
+app.post("/work", function(req, res){
+    let item = req.body.novaTarefa
+    workItem.push(item)
+    res.redirect("/work")
 })
 
 app.listen(3000, function () {

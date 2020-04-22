@@ -4,19 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de tarefas</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-    <h1> <%= algumDia %></h1>
-    <ul>
-        <% for (var i = 0; i < novoItem.length; i++){ %>  
-            <li> <%= novoItem[i] %> </li>
-        <% } %> 
-    </ul>
-    <form action="/" method="post">
-        <input type="text" name="coisas" placeholder="Estou aqui para te lembra">
-        <button type="submit" name="button">add</button>
-    </form>
 <body>
+    <div class="box" id="heading">
+        <h1> <%= algumCoisa %></h1>
+        
+    </div>
     
+    <div class="box">
+        <% for (var i = 0; i < novoItem.length; i++){ %>  
+            <div class="item">
+                <input type="checkbox" >
+                <p> <%= novoItem[i] %> </p>
+            </div>
+        <% } %> 
+
+        <form class="item" action="/" method="post">
+            <input type="text" name="novaTarefa" placeholder="Estou aqui para te lembra">
+            <button type="submit" name="list" value=<%= algumCoisa %> >+</button>
+        </form>
+    </div>
 </body>
 
 </html>
