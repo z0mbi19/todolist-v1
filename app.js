@@ -13,15 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static("public"))
 
 app.get("/", function (req, res) {
-    const data = new Date();
-
-    let options = {
-        weekday: "long",
-        day: "2-digit",
-        month: "long"
-    }
-
-    let dia = data.toLocaleDateString("pt-BR", options);
 
     res.render("list", {
         algumCoisa: dia,
@@ -54,6 +45,10 @@ app.post("/work", function(req, res){
     let item = req.body.novaTarefa
     workItem.push(item)
     res.redirect("/work")
+})
+
+app.get("/about", function (req, res) {
+    res.render("about")
 })
 
 app.listen(3000, function () {
